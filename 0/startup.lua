@@ -1,5 +1,5 @@
-local beeOutputName = "minecraft:chest_0"
-local combOutputName = "minecraft:chest_2"
+local beeOutputName = "minecraft:chest_3"
+local combOutputName = "minecraft:ironchest_iron_5"
 
 function startsWith(text, prefix)
 	if text == nil then return false end

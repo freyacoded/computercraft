@@ -2,9 +2,9 @@ local config = {
 	monitor = "monitor_0",
 	itemBarScale = math.log,
 	chests = {
-		valuables     = "minecraft:ironchest_iron_0",
+		valuables     = "minecraft:ironchest_gold_0",
 		stone         = "minecraft:ironchest_iron_1",
-		components    = "minecraft:ironchest_iron_2",
+		components    = "minecraft:ironchest_gold_1",
 		organic       = "minecraft:ironchest_iron_3",
 		miscellaneous = "minecraft:ironchest_iron_4"
 	},
