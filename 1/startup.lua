@@ -56,7 +56,7 @@ function tableToSortedList(counts)
 	table.sort(list, function (left, right)
 	    return left.count > right.count
 	end)
-	
+
 	return list
 end
 
