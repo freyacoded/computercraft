@@ -125,6 +125,25 @@ function ac.getAllInventories()
     return t
 end
 
+---@param label string
+---@return table<integer, CInventory>
+function ac.getInventoriesOf(label)
+    local inventories = {}
+    for _, inventory in pairs(ac.getAllInventories()) do
+        if (inventory.label == label) then table.insert(inventories, inventory) end
+    end
+    return inventories
+end
+
+---@return table<integer, string>
+function ac.getLabels()
+    local labels = {}
+    for _, inv in pairs(ac.getAllInventories()) do
+        table.insert(inv.label)
+    end
+    return labels
+end
+
 ---@param name string
 ---@return Monitor?
 function ac.getMonitor(name)

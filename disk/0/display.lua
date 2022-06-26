@@ -1,6 +1,7 @@
 local module = { on = {}, rednet = {} }
 local ac = require("ac")
 local itemBarScale = math.log
+local touchCounter = 0
 
 ---@param counts table<string, table<string, ItemSum>>
 ---@return table<integer, ItemSum>
@@ -41,7 +42,6 @@ function printItems(monitor, title, list)
 
 	local scale = itemBarScale
 	local maxLog = scale(list[1].count)
-	print("maxLog", maxLog)
 
 	for i, item in ipairs(list) do
 		monitor.setCursorPos(1, i + 1)
@@ -60,11 +60,27 @@ function printItems(monitor, title, list)
 end
 
 function module.on.update()
-    local monitor = ac.getMonitor("display")
-    ac.setPalette(monitor)
+    local monitor = ac.getMonitor("display") 
     if not monitor then return end
-    local counts = ac.countInventoryByLabel(ac.getAllInventories())
+    ac.setPalette(monitor)
+
+	local views = ac.getLabels()
+	table.insert(views, 1, "total")
+	local view = views[(#views % touchCounter) + 1]
+
+	local counts
+	if view == "total" then
+		counts = ac.countInventoryByLabel(ac.getAllInventories())
+	else
+		counts = ac.countInventoryByLabel(ac.getInventoriesOf(view))
+	end
+
     printItems(monitor, "total", labelCountsToSortedList(counts))
+end
+
+function module.on.touch()
+	touchCounter = touchCounter + 1
+	module.on.update()
 end
 
 return module
